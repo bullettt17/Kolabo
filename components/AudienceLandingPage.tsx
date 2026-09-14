@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { PLAN } from "@/lib/types";
 import type { IndustryStat } from "@/lib/stats";
 
 export interface AudienceLandingPageProps {
@@ -41,7 +40,7 @@ export default function AudienceLandingPage({
   secondaryLinkLabel = "Browse the creator directory →",
   secondaryLinkHref = "/creators",
   showSecondaryLink = true,
-  closingHeadline = `One subscription, from £${PLAN.monthlyPrice}/mo — no commission on what you pay creators.`,
+  closingHeadline = "One flat monthly subscription — no commission on what you pay creators.",
   closingCtaLabel,
   stats,
   heroImage,
