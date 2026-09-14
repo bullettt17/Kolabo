@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kolabo Concept Four</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#07060d;
+    --panel:rgba(255,255,255,0.045);
+    --panel-strong:rgba(255,255,255,0.07);
+    --border:rgba(255,255,255,0.12);
+    --border-strong:rgba(255,255,255,0.22);
+    --ink:#f6f5fb;
+    --ink-dim:rgba(246,245,251,0.66);
+    --ink-dimmer:rgba(246,245,251,0.42);
+    --violet:#8b5cf6;
+    --blue:#38bdf8;
+    --pink:#f472b6;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;background:var(--bg);color:var(--ink);
+    font-family:'Plus Jakarta Sans',system-ui,sans-serif;
+    padding:0 20px;position:relative;overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1180px;margin:0 auto;position:relative;z-index:2;}
+  h1,h2,h3{font-family:'Unbounded',system-ui,sans-serif;font-weight:700;margin:0;text-wrap:balance;letter-spacing:-0.01em;}
+  a{color:inherit;text-decoration:none;}
+
+  /* Ambient gradient mesh background */
+  .mesh{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;}
+  .blob{position:absolute;border-radius:50%;filter:blur(90px);opacity:0.55;}
+  .blob.b1{width:520px;height:520px;background:var(--violet);top:-140px;left:-100px;animation:drift1 26s ease-in-out infinite;}
+  .blob.b2{width:460px;height:460px;background:var(--blue);top:120px;right:-140px;animation:drift2 30s ease-in-out infinite;}
+  .blob.b3{width:420px;height:420px;background:var(--pink);bottom:-160px;left:30%;animation:drift3 34s ease-in-out infinite;}
+  @keyframes drift1{0%,100%{transform:translate(0,0);}50%{transform:translate(40px,60px);}}
+  @keyframes drift2{0%,100%{transform:translate(0,0);}50%{transform:translate(-50px,40px);}}
+  @keyframes drift3{0%,100%{transform:translate(0,0);}50%{transform:translate(30px,-40px);}}
+  @media (prefers-reduced-motion:reduce){ .blob{animation:none;} }
+  .grid-overlay{
+    position:fixed;inset:0;z-index:1;pointer-events:none;opacity:0.35;
+    background-image:linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+    background-size:44px 44px;
+    mask-image:radial-gradient(ellipse 70% 60% at 50% 0%, black, transparent 80%);
+  }
+
+  .glass{
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:20px;
+    backdrop-filter:blur(16px);
+    -webkit-backdrop-filter:blur(16px);
+  }
+
+  nav{display:flex;align-items:center;justify-content:space-between;padding-block:22px;}
+  .logo{display:flex;align-items:center;gap:9px;font-family:'Unbounded',sans-serif;font-weight:700;font-size:18px;}
+  .logo-mark{width:20px;height:20px;border-radius:7px;background:linear-gradient(135deg,var(--violet),var(--blue));flex:none;}
+  .nav-links{display:flex;gap:28px;font-size:14px;color:var(--ink-dim);}
+  .nav-links a:hover{color:var(--ink);}
+  @media (max-width:780px){ .nav-links{display:none;} }
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:12px 22px;border-radius:100px;font-size:14px;font-weight:600;
+    border:1px solid var(--border-strong);color:var(--ink);
+  }
+  .btn-ghost:hover{background:var(--panel-strong);}
+  .btn-sm{padding:9px 16px;font-size:13.5px;}
+  .btn-glow{
+    position:relative;color:#07060d;font-weight:700;border:none;
+    background:linear-gradient(135deg,var(--violet),var(--blue) 55%,var(--pink));
+  }
+  .btn-glow::before{
+    content:"";position:absolute;inset:-2px;border-radius:100px;z-index:-1;
+    background:conic-gradient(from var(--a,0deg), var(--violet), var(--blue), var(--pink), var(--violet));
+    filter:blur(10px);opacity:0.7;
+    animation:spin 5s linear infinite;
+  }
+  @keyframes spin{ to{ --a:360deg; } }
+  @property --a{ syntax:'<angle>'; inherits:false; initial-value:0deg; }
+  @media (prefers-reduced-motion:reduce){ .btn-glow::before{animation:none;} }
+
+  /* Hero */
+  .hero{padding-block:56px 0;}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:9px;font-size:12.5px;font-weight:600;
+    padding:7px 14px;border-radius:100px;margin-bottom:26px;color:var(--ink-dim);
+  }
+  .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--pink);box-shadow:0 0 8px var(--pink);}
+  .hero-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:44px;align-items:center;}
+  @media (max-width:920px){ .hero-grid{grid-template-columns:1fr;} }
+  .hero h1{font-size:clamp(36px,5.4vw,62px);line-height:1.05;}
+  .grad-text{
+    background:linear-gradient(100deg,var(--violet),var(--blue) 45%,var(--pink) 90%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .hero p.sub{margin-top:24px;font-size:16.5px;line-height:1.65;color:var(--ink-dim);max-width:480px;}
+  .hero-ctas{display:flex;flex-wrap:wrap;gap:14px;margin-top:32px;}
+  .hero-note{margin-top:18px;font-size:13px;color:var(--ink-dimmer);}
+
+  /* Hero glass card */
+  .hero-card{padding:22px;position:relative;}
+  .hero-card::after{
+    content:"";position:absolute;inset:0;border-radius:20px;padding:1px;
+    background:linear-gradient(135deg,rgba(139,92,246,0.6),rgba(56,189,248,0.15) 40%,rgba(244,114,182,0.5));
+    -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;
+  }
+  .hc-top{display:flex;align-items:center;gap:12px;padding-bottom:16px;border-bottom:1px solid var(--border);margin-bottom:16px;}
+  .avatar{width:48px;height:48px;border-radius:14px;background-size:cover;background-position:center;flex:none;
+    background-image:url('https://images.unsplash.com/photo-1595039838779-f3780873afdd?auto=format&fit=crop&w=200&q=80');
+    box-shadow:0 0 0 2px rgba(139,92,246,0.4);}
+  .hc-top .nm{font-weight:700;font-size:14.5px;}
+  .hc-top .mt{font-size:12px;color:var(--ink-dimmer);margin-top:2px;}
+  .hc-top .pill{margin-left:auto;background:rgba(56,189,248,0.15);color:var(--blue);font-size:11px;font-weight:700;padding:5px 10px;border-radius:100px;}
+  .mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px;}
+  .mini{background:var(--panel-strong);border:1px solid var(--border);border-radius:13px;padding:13px;}
+  .mini .n{font-family:'Unbounded',sans-serif;font-size:19px;font-weight:700;}
+  .mini .l{font-size:10.5px;color:var(--ink-dimmer);margin-top:3px;}
+  .hc-cta{margin-top:14px;width:100%;justify-content:center;}
+
+  /* Stats */
+  .stats{margin-top:60px;padding:26px;}
+  .stats-row{display:grid;grid-template-columns:repeat(4,1fr);}
+  @media (max-width:720px){ .stats-row{grid-template-columns:repeat(2,1fr);row-gap:22px;} }
+  .stats-row div{padding-inline:18px;border-left:1px solid var(--border);}
+  .stats-row div:first-child{border-left:none;}
+  @media (max-width:720px){ .stats-row div:nth-child(odd){border-left:none;} }
+  .stats-row .n{font-family:'Unbounded',sans-serif;font-size:23px;font-weight:700;}
+  .stats-row .l{font-size:12px;color:var(--ink-dimmer);margin-top:5px;}
+
+  section.block{padding-block:78px;}
+  .block-head{max-width:600px;margin-bottom:44px;}
+  .eyebrow-sm{font-size:12.5px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:14px;display:block;}
+  .block-head h2{font-size:clamp(26px,3.6vw,40px);line-height:1.1;}
+  .block-head p{margin-top:14px;color:var(--ink-dim);font-size:15.5px;}
+
+  .feat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+  @media (max-width:900px){ .feat-grid{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:540px){ .feat-grid{grid-template-columns:1fr;} }
+  .feat-card{padding:22px;transition:border-color .2s ease, transform .2s ease;}
+  .feat-card:hover{border-color:var(--border-strong);transform:translateY(-3px);}
+  .feat-card .ic{
+    width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;
+    font-weight:700;font-size:15px;margin-bottom:16px;color:#07060d;
+  }
+  .feat-card:nth-child(1) .ic{background:linear-gradient(135deg,var(--violet),var(--blue));}
+  .feat-card:nth-child(2) .ic{background:linear-gradient(135deg,var(--blue),var(--pink));}
+  .feat-card:nth-child(3) .ic{background:linear-gradient(135deg,var(--pink),var(--violet));}
+  .feat-card:nth-child(4) .ic{background:linear-gradient(135deg,var(--violet),var(--pink));}
+  .feat-card h3{font-family:'Plus Jakarta Sans',sans-serif;font-size:15.5px;font-weight:700;}
+  .feat-card p{margin:8px 0 0;font-size:13px;color:var(--ink-dimmer);line-height:1.55;}
+
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:46px;align-items:center;}
+  @media (max-width:860px){ .split{grid-template-columns:1fr;} }
+  .split h2{font-size:clamp(24px,3.2vw,34px);}
+  .split p.lead{margin-top:16px;color:var(--ink-dim);font-size:15.5px;max-width:440px;line-height:1.65;}
+  .checklist{list-style:none;padding:0;margin:22px 0 0;display:flex;flex-direction:column;gap:12px;}
+  .checklist li{display:flex;gap:11px;align-items:flex-start;font-size:14.5px;color:var(--ink-dim);}
+  .checklist li .chk{
+    flex:none;width:18px;height:18px;border-radius:6px;margin-top:1px;
+    background:linear-gradient(135deg,var(--violet),var(--blue));
+    display:flex;align-items:center;justify-content:center;font-size:11px;color:#07060d;font-weight:800;
+  }
+  .glow-photo{position:relative;border-radius:20px;overflow:hidden;aspect-ratio:4/3;}
+  .glow-photo img{width:100%;height:100%;object-fit:cover;display:block;}
+  .glow-photo::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(160deg, rgba(139,92,246,0.28), transparent 55%, rgba(244,114,182,0.22));
+    mix-blend-mode:screen;
+  }
+
+  .price-wrap{display:flex;justify-content:center;}
+  .price-card{padding:36px;max-width:420px;width:100%;position:relative;}
+  .price-card .tag{font-size:12.5px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:0.05em;}
+  .price-card .amt{font-family:'Unbounded',sans-serif;font-size:36px;font-weight:700;margin-top:10px;}
+  .price-card .amt span{font-size:13px;color:var(--ink-dimmer);font-family:'Plus Jakarta Sans',sans-serif;font-weight:500;}
+  .price-card .checklist{margin-top:22px;}
+  .price-card .btn{margin-top:26px;width:100%;justify-content:center;}
+
+  .cta-final{text-align:center;padding-block:90px;}
+  .cta-final h2{font-size:clamp(30px,5.4vw,54px);line-height:1.05;}
+  .cta-final p{margin-top:14px;color:var(--ink-dim);font-size:15.5px;}
+  .cta-final .btn{margin-top:30px;padding:15px 30px;font-size:15px;}
+
+  footer{padding-block:30px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;
+    border-top:1px solid var(--border);font-size:13px;color:var(--ink-dimmer);}
+</style>
+</head>
+<body>
+
+<div class="mesh">
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="blob b3"></div>
+</div>
+<div class="grid-overlay"></div>
+
+<div class="wrap">
+  <nav>
+    <div class="logo"><span class="logo-mark"></span>Kolabo</div>
+    <div class="nav-links">
+      <a href="#">For brands</a>
+      <a href="#">For creators</a>
+      <a href="#">Directory</a>
+      <a href="#">Pricing</a>
+    </div>
+    <div style="display:flex;gap:10px;">
+      <a href="#" class="btn btn-ghost btn-sm">Sign in</a>
+      <a href="#" class="btn btn-glow btn-sm">Get started</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <span class="eyebrow glass"><span class="dot"></span>Creator marketplace, reimagined</span>
+    <div class="hero-grid">
+      <div>
+        <h1>Where brands find <span class="grad-text">creators</span>, and deals get done.</h1>
+        <p class="sub">Kolabo is the marketplace where influencers list their accounts and businesses subscribe monthly to search, contact, and negotiate deals — no agencies, no cold DMs.</p>
+        <div class="hero-ctas">
+          <a href="#" class="btn btn-glow">Join as a business →</a>
+          <a href="#" class="btn btn-ghost glass">Join as a creator</a>
+        </div>
+        <p class="hero-note">Free for creators · Zero commission · Cancel anytime</p>
+      </div>
+
+      <div class="hero-card glass">
+        <div class="hc-top">
+          <div class="avatar"></div>
+          <div>
+            <div class="nm">Maya Ortiz</div>
+            <div class="mt">Lifestyle · 120K followers</div>
+          </div>
+          <div class="pill">● Online</div>
+        </div>
+        <div class="mini-grid">
+          <div class="mini"><div class="n">4.8%</div><div class="l">Engagement rate</div></div>
+          <div class="mini"><div class="n">£150</div><div class="l">Starting rate</div></div>
+          <div class="mini"><div class="n">2</div><div class="l">Platforms</div></div>
+          <div class="mini"><div class="n">&lt;2h</div><div class="l">Usually replies</div></div>
+        </div>
+        <a href="#" class="btn btn-glow hc-cta">Message Maya</a>
+      </div>
+    </div>
+
+    <div class="stats glass">
+      <div class="stats-row">
+        <div><div class="n">0%</div><div class="l">Commission on deals</div></div>
+        <div><div class="n">&lt;24h</div><div class="l">Average reply time</div></div>
+        <div><div class="n">15+</div><div class="l">Niches covered</div></div>
+        <div><div class="n">Growing</div><div class="l">Creators listed weekly</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="block-head">
+      <span class="eyebrow-sm">Why teams use Kolabo</span>
+      <h2>One subscription. Every deal, done in-platform.</h2>
+      <p>Search, message, and negotiate — without the agency mark-up or the cold DMs that go nowhere.</p>
+    </div>
+    <div class="feat-grid">
+      <div class="feat-card glass">
+        <div class="ic">⌕</div>
+        <h3>Unlimited search</h3>
+        <p>Filter by niche, platform, followers, and engagement — no cap, every month.</p>
+      </div>
+      <div class="feat-card glass">
+        <div class="ic">✉</div>
+        <h3>Direct messaging</h3>
+        <p>Message creators yourself. No agency relaying replies days later.</p>
+      </div>
+      <div class="feat-card glass">
+        <div class="ic">⇄</div>
+        <h3>In-thread negotiation</h3>
+        <p>Rates and deliverables agreed in one conversation, not five email chains.</p>
+      </div>
+      <div class="feat-card glass">
+        <div class="ic">£</div>
+        <h3>Zero commission</h3>
+        <p>One flat monthly fee. Whatever you agree with a creator stays between you two.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="split">
+      <div class="glow-photo">
+        <img src="https://images.unsplash.com/photo-1543525469-65b61cc2bc06?auto=format&fit=crop&w=900&q=80" alt="A creator recording UGC content on a smartphone">
+      </div>
+      <div>
+        <span class="eyebrow-sm">For creators</span>
+        <h2>Listing your account is free.</h2>
+        <p class="lead">Build a profile with your platforms, follower counts, niche, and rates. Get discovered by businesses already looking to book creators like you.</p>
+        <ul class="checklist">
+          <li><span class="chk">✓</span>Free to create and publish your profile</li>
+          <li><span class="chk">✓</span>Get messaged directly by businesses</li>
+          <li><span class="chk">✓</span>Set your own rates and terms</li>
+          <li><span class="chk">✓</span>Negotiate every deal on your terms</li>
+        </ul>
+        <div class="hero-ctas"><a href="#" class="btn btn-glow">List your account →</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="block-head" style="margin-inline:auto;text-align:center;">
+      <span class="eyebrow-sm">Pricing</span>
+      <h2>Simple, transparent pricing.</h2>
+      <p>Billed monthly, cancel anytime. No setup fee, no per-booking commission.</p>
+    </div>
+    <div class="price-wrap">
+      <div class="price-card glass">
+        <div class="tag">Business plan</div>
+        <div class="amt">Monthly<span> · cancel anytime</span></div>
+        <ul class="checklist">
+          <li><span class="chk">✓</span>Full access to the creator directory</li>
+          <li><span class="chk">✓</span>Unlimited messages to creators</li>
+          <li><span class="chk">✓</span>Deal negotiation in-platform</li>
+          <li><span class="chk">✓</span>Manage billing anytime</li>
+        </ul>
+        <a href="#" class="btn btn-glow">Start your subscription</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-final">
+    <h2>Ready to get<br><span class="grad-text">started?</span></h2>
+    <p>Join free as a creator, or start your subscription as a business.</p>
+    <a href="#" class="btn btn-glow">Create your account →</a>
+  </section>
+
+  <footer>
+    <div class="logo" style="font-size:15px;"><span class="logo-mark" style="width:16px;height:16px;"></span>Kolabo</div>
+    <div>Concept 04 — not the live site</div>
+  </footer>
+</div>
+
+</body>
+</html>

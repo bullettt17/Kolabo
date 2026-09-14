@@ -124,14 +124,14 @@ export default function AudienceLandingPage({
         </div>
       </section>
 
-      <section className="bg-slate-900">
-        <div className="container-page flex flex-col items-center gap-5 py-16 text-center">
-          <h2 className="font-display text-2xl font-bold tracking-tight text-white sm:text-3xl">
+      <section className="sunset-band">
+        <div className="container-page relative z-10 flex flex-col items-center gap-5 py-16 text-center">
+          <h2 className="font-display text-2xl font-bold tracking-tightest text-white sm:text-3xl">
             {closingHeadline}
           </h2>
           <Link
             href={ctaHref}
-            className="btn bg-brand-500 px-7 py-3.5 text-base text-white hover:bg-brand-600"
+            className="btn bg-cream px-7 py-3.5 text-base text-ink hover:bg-white"
           >
             {closingCtaLabel ?? ctaLabel}
           </Link>

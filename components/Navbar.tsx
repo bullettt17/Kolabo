@@ -106,7 +106,7 @@ export default function Navbar() {
     <header className="sticky top-0 z-40 border-b border-slate-100 bg-white/80 backdrop-blur">
       <div className="container-page flex h-16 items-center justify-between">
         <Link href="/" className="flex items-center gap-2.5">
-          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-brand-500 text-sm font-bold text-white">
+          <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-sunset text-sm font-bold text-white shadow-sm">
             K
           </span>
           <span className="font-display text-lg font-bold tracking-tight text-slate-900">

@@ -26,40 +26,40 @@ export default async function HomePage() {
   return (
     <div>
       {/* Hero */}
-      <section className="border-b border-slate-100 bg-gradient-to-b from-brand-50/60 to-white">
-        <div className="container-page grid gap-10 py-20 sm:py-28 lg:grid-cols-2 lg:items-center">
+      <section className="sunset-band border-b border-orange-900/10">
+        <div className="container-page relative z-10 grid gap-10 py-20 sm:py-28 lg:grid-cols-2 lg:items-center">
           <div>
-            <span className="badge mb-5">Creator marketplace</span>
-            <h1 className="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
+            <span className="badge mb-5 bg-white/15 text-white">Creator marketplace</span>
+            <h1 className="text-4xl font-bold tracking-tightest text-white sm:text-5xl">
               Where brands find creators, and deals get done.
             </h1>
-            <p className="mt-5 text-lg text-slate-600">
+            <p className="mt-5 text-lg text-white/85">
               Kolabo is the marketplace where influencers list their
               accounts and businesses subscribe monthly to search, contact,
               and negotiate deals with creators — no agencies, no cold DMs.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link href="/sign-up" className="btn-primary px-6 py-3 text-base">
+              <Link href="/sign-up" className="btn bg-cream px-6 py-3 text-base text-ink hover:bg-white">
                 Join as a business
               </Link>
               <Link
                 href="/sign-up"
-                className="btn-secondary px-6 py-3 text-base"
+                className="btn px-6 py-3 text-base text-white ring-1 ring-inset ring-white/40 hover:bg-white/10"
               >
                 Join as a creator
               </Link>
             </div>
-            <div className="mt-6 flex items-center gap-2 text-sm text-slate-500">
-              <Link href="/creators" className="font-medium text-brand-600 hover:text-brand-700">
+            <div className="mt-6 flex items-center gap-2 text-sm text-white/80">
+              <Link href="/creators" className="font-medium text-white hover:text-cream">
                 Browse the creator directory →
               </Link>
             </div>
           </div>
-          <div className="grid grid-cols-2 gap-4">
-            <StatCard label="Creators listed" value="Growing weekly" />
-            <StatCard label="Avg. reply time" value="< 24 hrs" />
-            <StatCard label="Niches covered" value="15+" />
-            <StatCard label="Deals handled" value="On-platform" />
+          <div className="sunset-card grid grid-cols-2 gap-4">
+            <HeroStat label="Creators listed" value="Growing weekly" />
+            <HeroStat label="Avg. reply time" value="< 24 hrs" />
+            <HeroStat label="Niches covered" value="15+" />
+            <HeroStat label="Deals handled" value="On-platform" />
           </div>
         </div>
       </section>
@@ -159,15 +159,15 @@ export default async function HomePage() {
       </section>
 
       {/* CTA */}
-      <section className="border-t border-slate-100 bg-brand-500">
-        <div className="container-page flex flex-col items-center gap-6 py-16 text-center">
+      <section className="sunset-band border-t border-orange-900/10">
+        <div className="container-page relative z-10 flex flex-col items-center gap-6 py-16 text-center">
           <h2 className="text-3xl font-bold text-white">
             Ready to get started with Kolabo?
           </h2>
           <div className="flex flex-wrap justify-center gap-3">
             <Link
               href="/sign-up"
-              className="btn bg-white px-6 py-3 text-base text-brand-700 hover:bg-brand-50"
+              className="btn bg-cream px-6 py-3 text-base text-ink hover:bg-white"
             >
               Create your account
             </Link>
@@ -178,11 +178,11 @@ export default async function HomePage() {
   );
 }
 
-function StatCard({ label, value }: { label: string; value: string }) {
+function HeroStat({ label, value }: { label: string; value: string }) {
   return (
-    <div className="card">
-      <p className="text-2xl font-bold text-slate-900">{value}</p>
-      <p className="mt-1 text-sm text-slate-500">{label}</p>
+    <div className="rounded-2xl bg-ink/[0.04] p-4">
+      <p className="text-2xl font-bold text-ink">{value}</p>
+      <p className="mt-1 text-sm text-ink/60">{label}</p>
     </div>
   );
 }

@@ -1,11 +1,15 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Urbanist } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const urbanist = Urbanist({
+  subsets: ["latin"],
+  variable: "--font-urbanist",
+  weight: ["400", "500", "600", "700", "800", "900"],
+});
 
 export const metadata: Metadata = {
   title: "Kolabo — Where brands and creators connect",
@@ -19,8 +23,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <ClerkProvider>
-      <html lang="en" className={inter.variable}>
+    <ClerkProvider
+      appearance={{
+        variables: {
+          colorPrimary: "#ff6a1f",
+        },
+      }}
+    >
+      <html lang="en" className={urbanist.variable}>
         <body className="flex min-h-screen flex-col font-sans">
           <Navbar />
           <main className="flex-1">{children}</main>
