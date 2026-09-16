@@ -40,7 +40,7 @@ export default function EnterpriseContactForm() {
   if (status === "sent") {
     return (
       <div className="card text-center">
-        <p className="text-lg font-semibold text-slate-900">Thanks — we've got it.</p>
+        <p className="text-lg font-semibold text-slate-900">Thanks — we&apos;ve got it.</p>
         <p className="mt-2 text-sm text-slate-600">
           A real person will reply from a real inbox within a couple of business days.
         </p>

@@ -51,7 +51,7 @@ export default function EnterprisePage() {
             Tell us about your team.
           </h2>
           <p className="mt-3 text-slate-600">
-            A couple of details and we'll reply from a real inbox — no automated ticket queue.
+            A couple of details and we&apos;ll reply from a real inbox — no automated ticket queue.
           </p>
           <div className="mt-8">
             <EnterpriseContactForm />
