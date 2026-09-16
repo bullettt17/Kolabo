@@ -8,14 +8,9 @@ import {
 
 const FOR_BRANDS_LINKS: { href: string; label: string; text: string }[] = [
   {
-    href: "/for-brands/marketing-teams",
-    label: "Marketing teams",
-    text: "Run every campaign from one shared account",
-  },
-  {
     href: "/for-brands/agencies",
-    label: "Agencies",
-    text: "Search creators for every client, from one place",
+    label: "Agencies & marketing teams",
+    text: "Search creators for every client or campaign, from one place",
   },
   {
     href: "/for-brands/founders",
@@ -37,13 +32,8 @@ const FOR_CREATORS_LINKS: { href: string; label: string; text: string }[] = [
   },
   {
     href: "/for-creators/ugc",
-    label: "UGC creators",
+    label: "UGC, photo & video creators",
     text: "Get paid for content, not your following",
-  },
-  {
-    href: "/for-creators/photographers-videographers",
-    label: "Photographers & videographers",
-    text: "Turn your portfolio into paid brand work",
   },
   {
     href: "/for-creators/full-time",

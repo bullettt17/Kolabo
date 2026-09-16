@@ -3,17 +3,17 @@ import AudienceLandingPage from "@/components/AudienceLandingPage";
 import { INFLUENCER_MARKETING_STATS } from "@/lib/stats";
 
 export const metadata: Metadata = {
-  title: "Kolabo for Agencies",
+  title: "Kolabo for Agencies & Marketing Teams",
   description:
-    "Search creators for every client brief from one Kolabo account, without juggling separate lists per client.",
+    "Search creators for every client or campaign from one shared Kolabo account — no separate seats, no per-client lists.",
 };
 
 export default function AgenciesPage() {
   return (
     <AudienceLandingPage
-      eyebrow="For agencies"
-      title="Search creators for every client, from one account."
-      subtitle="Kolabo gives your agency a single directory to work from — filter by niche, platform, country, and budget for whichever brief you're staffing."
+      eyebrow="For agencies & marketing teams"
+      title="One account. Every client, every campaign."
+      subtitle="Whether you're staffing client briefs or running your own team's campaigns, Kolabo gives you a single creator directory to work from — filter by niche, platform, country, and budget, and keep every conversation visible to the whole team."
       ctaLabel="Start your subscription"
       ctaHref="/sign-up"
       stats={INFLUENCER_MARKETING_STATS}
@@ -23,12 +23,12 @@ export default function AgenciesPage() {
       }}
       benefits={[
         {
-          title: "One directory, every client",
-          text: "Search the same creator directory for each client brief instead of rebuilding a shortlist from scratch every time.",
+          title: "One login, one subscription",
+          text: "Your whole team searches and messages creators from the same account — no separate seats to buy or manage, and no rebuilding a shortlist per client.",
         },
         {
-          title: "Save a shortlist per campaign",
-          text: "Bookmark creators as you shortlist them, so each client's options stay easy to find again later.",
+          title: "Nothing gets lost between teammates",
+          text: "Every conversation with a creator stays visible under Messages, so a campaign or client brief doesn't stall if one person is out.",
         },
         {
           title: "You negotiate directly",
@@ -36,7 +36,7 @@ export default function AgenciesPage() {
         },
         {
           title: "One flat fee, not per client",
-          text: "Your subscription covers unlimited search and messaging across every client you're working for — no per-booking commission.",
+          text: "Your subscription covers unlimited search and messaging across every campaign or client you're working for — no per-booking commission.",
         },
       ]}
     />

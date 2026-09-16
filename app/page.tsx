@@ -56,10 +56,10 @@ export default async function HomePage() {
             </div>
           </div>
           <div className="sunset-card grid grid-cols-2 gap-4">
-            <HeroStat label="Creators listed" value="Growing weekly" />
-            <HeroStat label="Avg. reply time" value="< 24 hrs" />
+            <HeroStat label="Commission on deals" value="0%" />
+            <HeroStat label="Flat monthly plan" value="1" />
             <HeroStat label="Niches covered" value="15+" />
-            <HeroStat label="Deals handled" value="On-platform" />
+            <HeroStat label="For creators, always" value="Free" />
           </div>
         </div>
       </section>
@@ -120,13 +120,15 @@ export default async function HomePage() {
           <div className="order-2 lg:order-1">
             <div className="card">
               <p className="text-sm font-semibold text-slate-500">
-                Your profile
+                Example creator profile
               </p>
               <div className="mt-4 flex items-center gap-3">
-                <div className="h-12 w-12 rounded-full bg-brand-100" />
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-100 text-sm font-bold text-brand-700">
+                  R
+                </div>
                 <div>
-                  <p className="font-semibold text-slate-900">Your name</p>
-                  <p className="text-sm text-slate-500">Lifestyle · 120K followers</p>
+                  <p className="font-semibold text-slate-900">Ruby Sinclair</p>
+                  <p className="text-sm text-slate-500">Lifestyle · 76K followers</p>
                 </div>
               </div>
               <p className="mt-4 text-sm text-slate-600">
@@ -203,7 +205,8 @@ function PricingCard() {
     <div className="card">
       <p className="text-sm font-semibold text-slate-500">Business plan</p>
       <p className="mt-2 flex items-baseline gap-1">
-        <span className="text-4xl font-bold text-slate-900">Monthly</span>
+        <span className="text-4xl font-bold text-slate-900">£49</span>
+        <span className="text-base font-medium text-slate-500">/month</span>
       </p>
       <p className="mt-1 text-sm text-slate-500">
         Billed monthly, cancel anytime
