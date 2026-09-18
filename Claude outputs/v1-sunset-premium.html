@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Kolabo — Creator profile (v1: Sunset Premium)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@500;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --brand-50:#fff4e9; --brand-100:#ffe4c2; --brand-200:#ffc98a; --brand-300:#ffab52;
+    --brand-400:#ff8a2e; --brand-500:#ff6a1f; --brand-600:#e5501a; --brand-700:#c23a1c;
+    --cream:#fbf4e8; --ink:#0c0a09;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; font-family:"Urbanist",system-ui,sans-serif; background:#fdf8f1; color:var(--ink);
+  }
+  .label-tag{position:fixed; top:14px; left:14px; z-index:50; background:var(--ink); color:#fff; font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; padding:6px 12px; border-radius:999px;}
+  header.nav{position:sticky; top:0; z-index:30; background:rgba(255,255,255,.85); backdrop-filter:blur(10px); border-bottom:1px solid rgba(12,10,9,.06);}
+  .nav-inner{max-width:1180px; margin:0 auto; padding:0 24px; height:64px; display:flex; align-items:center; justify-content:space-between;}
+  .logo{display:flex; align-items:center; gap:10px; font-weight:800; font-size:18px;}
+  .logo-mark{width:32px; height:32px; border-radius:10px; background:linear-gradient(135deg,#ffb64d,#ff6a1f 48%,#c81e3a); display:flex; align-items:center; justify-content:center; color:#fff; font-weight:800; font-size:14px;}
+  .navlinks{display:flex; gap:28px; font-size:14px; font-weight:600; color:#57534e;}
+  .container{max-width:1180px; margin:0 auto; padding:0 24px;}
+
+  .hero{position:relative; margin-top:28px; border-radius:28px; overflow:hidden; height:220px; background:linear-gradient(135deg,#ffb64d 0%, #ff6a1f 48%, #c81e3a 100%);}
+  .hero::before{content:""; position:absolute; inset:0; background-image:radial-gradient(rgba(255,255,255,.22) 1px, transparent 1px); background-size:20px 20px; opacity:.55;}
+  .hero::after{content:""; position:absolute; inset:0; background:linear-gradient(180deg, transparent 40%, rgba(0,0,0,.18) 100%);}
+
+  .profile-block{position:relative; margin-top:-76px; padding:0 8px;}
+  .avatar-row{display:flex; align-items:flex-end; gap:22px; padding:0 24px;}
+  .avatar{width:132px; height:132px; border-radius:28px; border:6px solid #fdf8f1; object-fit:cover; box-shadow:0 12px 30px rgba(0,0,0,.18); background:#fff;}
+  .name-block{padding-bottom:14px;}
+  .name-row{display:flex; align-items:center; gap:10px;}
+  h1{margin:0; font-size:32px; font-weight:800; letter-spacing:-0.01em;}
+  .verified{display:inline-flex; align-items:center; justify-content:center; width:20px; height:20px; border-radius:999px; background:var(--brand-500); color:#fff;}
+  .meta-line{margin:4px 0 0; color:#78716c; font-weight:600; font-size:15px;}
+
+  .grid{display:grid; grid-template-columns:1fr 340px; gap:28px; margin-top:36px; padding-bottom:64px;}
+  @media (max-width:900px){ .grid{grid-template-columns:1fr;} }
+
+  .card{background:#fff; border-radius:22px; padding:28px; box-shadow:0 1px 2px rgba(0,0,0,.04); border:1px solid rgba(12,10,9,.06);}
+  .card + .card{margin-top:22px;}
+
+  .badge{display:inline-flex; align-items:center; gap:6px; background:var(--brand-50); color:var(--brand-700); font-size:12px; font-weight:700; padding:6px 12px; border-radius:999px;}
+  .headline{margin:16px 0 0; font-size:17px; font-weight:600; color:#292524;}
+  .bio{margin:18px 0 0; color:#57534e; line-height:1.7; font-size:15px;}
+
+  .section-title{font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:.06em; color:#a8a29e; margin:0 0 14px;}
+
+  .stat-row{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:24px;}
+  .stat-tile{border-radius:16px; padding:16px; background:var(--cream);}
+  .stat-num{font-size:22px; font-weight:800;}
+  .stat-lab{font-size:12px; color:#78716c; font-weight:600; margin-top:2px;}
+
+  .platform-row{display:flex; align-items:center; justify-content:space-between; padding:16px 18px; border-radius:16px; background:var(--cream);}
+  .platform-row + .platform-row{margin-top:12px;}
+  .platform-left{display:flex; align-items:center; gap:14px;}
+  .plat-icon{width:40px; height:40px; border-radius:12px; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:800; font-size:13px;}
+  .tiktok{background:#000;} .instagram{background:linear-gradient(135deg,#f58529,#dd2a7b,#8134af,#515bd4);}
+  .plat-name{font-weight:700; font-size:15px;}
+  .plat-handle{font-size:13px; color:#78716c; font-weight:600;}
+  .plat-followers{font-weight:800; font-size:16px;}
+
+  .pillars{display:flex; flex-wrap:wrap; gap:8px; margin-top:16px;}
+  .pillar{background:#fff; border:1.5px solid var(--brand-100); color:var(--brand-700); font-weight:700; font-size:13px; padding:7px 13px; border-radius:999px;}
+
+  .sticky{position:sticky; top:88px;}
+  .price-num{display:flex; align-items:baseline; gap:6px; margin-top:6px;}
+  .price-num .big{font-size:34px; font-weight:800;}
+  .price-num .small{color:#78716c; font-weight:600; font-size:14px;}
+  .rate-notes{margin-top:10px; font-size:13.5px; color:#78716c; line-height:1.6;}
+  .cta{display:flex; align-items:center; justify-content:center; gap:8px; width:100%; margin-top:20px; background:var(--brand-500); color:#fff; border:none; padding:15px; border-radius:999px; font-weight:700; font-size:15px; cursor:pointer;}
+  .cta:hover{background:var(--brand-600);}
+  .trust-line{margin-top:14px; font-size:12.5px; color:#a8a29e; text-align:center; font-weight:600;}
+  .divider{height:1px; background:rgba(12,10,9,.08); margin:18px 0;}
+  .avail{display:flex; align-items:center; gap:8px; font-size:13px; font-weight:700; color:#15803d;}
+  .dot{width:8px; height:8px; border-radius:999px; background:#22c55e;}
+</style>
+</head>
+<body>
+<div class="label-tag">Preview 1 of 3 — Sunset Premium</div>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="logo"><span class="logo-mark">K</span>Kolabo</div>
+    <div class="navlinks"><span>Browse creators</span><span>For creators</span><span>For brands</span></div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="hero"></div>
+  <div class="profile-block">
+    <div class="avatar-row">
+      <img class="avatar" src="https://picsum.photos/seed/noah-kim/300/300" alt="Noah Kim" />
+      <div class="name-block">
+        <div class="name-row">
+          <h1>Noah Kim</h1>
+          <span class="verified">✓</span>
+        </div>
+        <p class="meta-line">Comedy · Los Angeles</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div>
+      <div class="card">
+        <span class="badge">505K reach across platforms</span>
+        <p class="headline">Sketch comedy and pop-culture parody</p>
+        <div class="stat-row">
+          <div class="stat-tile"><div class="stat-num">505K</div><div class="stat-lab">Total followers</div></div>
+          <div class="stat-tile"><div class="stat-num">7.1%</div><div class="stat-lab">Engagement rate</div></div>
+          <div class="stat-tile"><div class="stat-num">2</div><div class="stat-lab">Platforms</div></div>
+        </div>
+        <div class="divider"></div>
+        <p class="section-title">About</p>
+        <p class="bio">Fast-turnaround sketch comedy reacting to trends and pop culture, built a following on relatable everyday-life bits before branching into brand parody skits.</p>
+        <p class="section-title" style="margin-top:22px;">Content pillars</p>
+        <div class="pillars">
+          <span class="pillar">Sketch comedy</span>
+          <span class="pillar">Trend reactions</span>
+          <span class="pillar">Everyday-life bits</span>
+          <span class="pillar">Brand parody skits</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <p class="section-title">Platforms</p>
+        <div class="platform-row">
+          <div class="platform-left">
+            <div class="plat-icon tiktok">TT</div>
+            <div><div class="plat-name">TikTok</div><div class="plat-handle">@noahkimcomedy</div></div>
+          </div>
+          <div class="plat-followers">410K</div>
+        </div>
+        <div class="platform-row">
+          <div class="platform-left">
+            <div class="plat-icon instagram">IG</div>
+            <div><div class="plat-name">Instagram</div><div class="plat-handle">@noahkimcomedy</div></div>
+          </div>
+          <div class="plat-followers">95K</div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="card sticky">
+        <div class="avail"><span class="dot"></span>Open for bookings</div>
+        <p class="section-title" style="margin-top:16px;">Starting rate</p>
+        <div class="price-num"><span class="big">£800</span><span class="small">per deliverable</span></div>
+        <p class="rate-notes">Scripts are written in-house to match the brand brief and his usual comedic voice.</p>
+        <button class="cta">Sign up as a business to contact →</button>
+        <p class="trust-line">No commission · Flat monthly plan, not per creator</p>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

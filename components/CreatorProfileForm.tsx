@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type ChangeEvent } from "react";
 import { useRouter } from "next/navigation";
 import type { CreatorProfile, PlatformHandle } from "@/lib/types";
 import { NICHES, PLATFORMS } from "@/lib/types";
@@ -36,6 +36,8 @@ export default function CreatorProfileForm({
   const [saving, setSaving] = useState(false);
   const [status, setStatus] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [uploadingAvatar, setUploadingAvatar] = useState(false);
+  const [avatarError, setAvatarError] = useState<string | null>(null);
 
   function updatePlatform(index: number, patch: Partial<PlatformHandle>) {
     setPlatforms((prev) =>
@@ -52,6 +54,37 @@ export default function CreatorProfileForm({
 
   function removePlatform(index: number) {
     setPlatforms((prev) => prev.filter((_, i) => i !== index));
+  }
+
+  async function handleAvatarUpload(e: ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    e.target.value = "";
+    if (!file) return;
+
+    setUploadingAvatar(true);
+    setAvatarError(null);
+
+    try {
+      const formData = new FormData();
+      formData.append("file", file);
+      const res = await fetch("/api/creator-profile/avatar", {
+        method: "POST",
+        body: formData,
+      });
+      const data = await res.json().catch(() => ({}));
+
+      if (!res.ok) {
+        throw new Error(data.error || "Upload failed");
+      }
+
+      setAvatarUrl(data.url);
+    } catch (err) {
+      setAvatarError(
+        err instanceof Error ? err.message : "Upload failed — try again."
+      );
+    } finally {
+      setUploadingAvatar(false);
+    }
   }
 
   function updateLink(index: number, value: string) {
@@ -163,13 +196,43 @@ export default function CreatorProfileForm({
             </div>
           </div>
           <div>
-            <label className="label">Avatar image URL</label>
-            <input
-              className="input"
-              placeholder="https://…"
-              value={avatarUrl}
-              onChange={(e) => setAvatarUrl(e.target.value)}
-            />
+            <label className="label">Profile picture</label>
+            <div className="flex items-center gap-4">
+              <div className="flex h-16 w-16 flex-none items-center justify-center overflow-hidden rounded-2xl bg-brand-100 text-xl font-bold text-brand-700">
+                {avatarUrl ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={avatarUrl}
+                    alt="Your profile picture"
+                    className="h-full w-full object-cover"
+                  />
+                ) : (
+                  displayName.charAt(0).toUpperCase() || "?"
+                )}
+              </div>
+              <div>
+                <label className="btn-secondary cursor-pointer">
+                  {uploadingAvatar
+                    ? "Uploading…"
+                    : avatarUrl
+                    ? "Change photo"
+                    : "Upload photo"}
+                  <input
+                    type="file"
+                    accept="image/png,image/jpeg,image/webp,image/gif"
+                    className="hidden"
+                    disabled={uploadingAvatar}
+                    onChange={handleAvatarUpload}
+                  />
+                </label>
+                <p className="mt-1 text-xs text-slate-500">
+                  PNG, JPEG, WEBP, or GIF. Up to 5MB.
+                </p>
+                {avatarError && (
+                  <p className="mt-1 text-xs text-red-600">{avatarError}</p>
+                )}
+              </div>
+            </div>
           </div>
           <div>
             <label className="label">Bio</label>
@@ -294,7 +357,7 @@ export default function CreatorProfileForm({
 
         <section className="card space-y-4">
           <div className="flex items-center justify-between">
-            <h2 className="font-semibold text-slate-900">Portfolio links</h2>
+            <h2 className="font-semibold text-slate-900">Content</h2>
             <button
               type="button"
               onClick={addLink}
@@ -303,6 +366,9 @@ export default function CreatorProfileForm({
               + Add link
             </button>
           </div>
+          <p className="text-sm text-slate-500">
+            Link your best posts or videos — these show as cards on your public profile.
+          </p>
           {portfolioLinks.map((link, i) => (
             <div key={i} className="flex gap-2">
               <input

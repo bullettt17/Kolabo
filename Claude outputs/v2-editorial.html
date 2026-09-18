@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Kolabo — Creator profile (v2: Editorial)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Urbanist:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --ink:#181410; --paper:#faf7f2; --line:rgba(24,20,16,.1); --accent:#c23a1c;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; font-family:"Urbanist",system-ui,sans-serif; background:var(--paper); color:var(--ink);}
+  .label-tag{position:fixed; top:14px; left:14px; z-index:50; background:var(--ink); color:#fff; font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; padding:6px 12px; border-radius:999px;}
+  header.nav{border-bottom:1px solid var(--line);}
+  .nav-inner{max-width:1080px; margin:0 auto; padding:0 24px; height:76px; display:flex; align-items:center; justify-content:space-between;}
+  .logo{font-family:"Fraunces",serif; font-weight:600; font-size:20px; letter-spacing:-0.01em;}
+  .navlinks{display:flex; gap:32px; font-size:13px; font-weight:600; letter-spacing:.02em; text-transform:uppercase; color:#78716c;}
+  .container{max-width:1080px; margin:0 auto; padding:0 24px;}
+
+  .top{display:grid; grid-template-columns:auto 1fr; gap:40px; align-items:end; padding:56px 0 40px; border-bottom:1px solid var(--line);}
+  @media (max-width:760px){ .top{grid-template-columns:1fr;} }
+  .avatar{width:120px; height:120px; border-radius:4px; object-fit:cover; filter:grayscale(1) contrast(1.05);}
+  .eyebrow{font-size:12px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); margin:0 0 10px;}
+  h1{font-family:"Fraunces",serif; font-weight:500; font-size:52px; line-height:1; margin:0; letter-spacing:-0.01em;}
+  .meta{margin:14px 0 0; font-size:15px; color:#57534e; font-weight:500;}
+  .meta b{color:var(--ink); font-weight:700;}
+
+  .layout{display:grid; grid-template-columns:1fr 300px; gap:64px; padding:48px 0 80px;}
+  @media (max-width:860px){ .layout{grid-template-columns:1fr;} }
+
+  .kicker{font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:#a8a29e; margin:0 0 16px;}
+  .bio{font-family:"Fraunces",serif; font-weight:400; font-size:23px; line-height:1.5; color:#292524; margin:0;}
+
+  .stats-strip{display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid var(--line); border-bottom:1px solid var(--line); margin:44px 0;}
+  .stat{padding:22px 0; text-align:left;}
+  .stat + .stat{border-left:1px solid var(--line); padding-left:24px;}
+  .stat-num{font-family:"Fraunces",serif; font-size:30px; font-weight:500;}
+  .stat-lab{font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:.06em; color:#a8a29e; margin-top:4px;}
+
+  table.platforms{width:100%; border-collapse:collapse; margin-top:8px;}
+  table.platforms td{padding:16px 0; border-bottom:1px solid var(--line); vertical-align:middle;}
+  .plat-name{font-weight:700; font-size:16px;}
+  .plat-handle{font-size:13px; color:#78716c; font-weight:500;}
+  .plat-count{text-align:right; font-family:"Fraunces",serif; font-size:22px; font-weight:500;}
+
+  .pillars-list{margin:14px 0 0; padding:0; list-style:none;}
+  .pillars-list li{font-size:15px; padding:9px 0; border-bottom:1px solid var(--line); display:flex; align-items:center; gap:10px;}
+  .pillars-list li::before{content:"—"; color:var(--accent); font-weight:700;}
+
+  .side{position:sticky; top:40px; align-self:start; border:1px solid var(--line); padding:30px;}
+  .side .kicker{margin-bottom:10px;}
+  .rate{font-family:"Fraunces",serif; font-size:38px; font-weight:500; margin:0;}
+  .rate span{font-family:"Urbanist"; font-size:14px; color:#78716c; font-weight:600;}
+  .rate-notes{font-size:13.5px; color:#78716c; margin-top:14px; line-height:1.65;}
+  .cta{display:block; width:100%; text-align:center; margin-top:26px; background:var(--ink); color:#fff; border:none; padding:16px; font-weight:600; font-size:14px; letter-spacing:.03em; text-transform:uppercase; cursor:pointer;}
+  .cta:hover{background:#000;}
+  .status{display:flex; align-items:center; gap:8px; font-size:12.5px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:#4d7c0f; margin-top:22px;}
+  .dot{width:7px; height:7px; border-radius:999px; background:#4d7c0f;}
+</style>
+</head>
+<body>
+<div class="label-tag">Preview 2 of 3 — Editorial</div>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="logo">Kolabo</div>
+    <div class="navlinks"><span>Browse</span><span>Creators</span><span>Brands</span></div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="top">
+    <img class="avatar" src="https://picsum.photos/seed/noah-kim/300/300" alt="Noah Kim" />
+    <div>
+      <p class="eyebrow">Comedy Creator</p>
+      <h1>Noah Kim</h1>
+      <p class="meta">Los Angeles · <b>505K</b> followers across platforms</p>
+    </div>
+  </div>
+
+  <div class="layout">
+    <div>
+      <p class="kicker">About</p>
+      <p class="bio">"Fast-turnaround sketch comedy reacting to trends and pop culture — built a following on relatable everyday-life bits before branching into brand parody skits."</p>
+
+      <div class="stats-strip">
+        <div class="stat"><div class="stat-num">505K</div><div class="stat-lab">Total reach</div></div>
+        <div class="stat"><div class="stat-num">7.1%</div><div class="stat-lab">Engagement</div></div>
+        <div class="stat"><div class="stat-num">£800</div><div class="stat-lab">From, per piece</div></div>
+      </div>
+
+      <p class="kicker">Platforms</p>
+      <table class="platforms">
+        <tr><td><div class="plat-name">TikTok</div><div class="plat-handle">@noahkimcomedy</div></td><td class="plat-count">410K</td></tr>
+        <tr><td><div class="plat-name">Instagram</div><div class="plat-handle">@noahkimcomedy</div></td><td class="plat-count">95K</td></tr>
+      </table>
+
+      <p class="kicker" style="margin-top:36px;">Content pillars</p>
+      <ul class="pillars-list">
+        <li>Sketch comedy</li>
+        <li>Trend reactions</li>
+        <li>Everyday-life bits</li>
+        <li>Brand parody skits</li>
+      </ul>
+    </div>
+
+    <div class="side">
+      <p class="kicker">Starting rate</p>
+      <p class="rate">£800 <span>/ deliverable</span></p>
+      <p class="rate-notes">Scripts are written in-house to match the brand brief and his usual comedic voice.</p>
+      <button class="cta">Sign up to contact Noah</button>
+      <div class="status"><span class="dot"></span>Open for bookings</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
